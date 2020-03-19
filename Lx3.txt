@@ -1,0 +1,101 @@
+﻿C#企业级开发技术练习3答题卡
+
+班级：     信息管理一班	
+姓名：     余晓伟
+学号：     20190307109
+
+注：请将答案放置在序号下方。*/
+
+（一）
+namespace ConsoleAppl
+{
+     delegate double CalcD(float a, float b, float c);
+     class Program
+     {
+        static double CalcSum(float a, float b, float c) 
+        {
+         return a+b+c;
+         }  
+        static double CalcMul(float a, float b, float c) 
+        {
+         return a*b*c;
+         }
+      static void Main(string[] args)
+        {
+          CalcD cd=CalcSum;
+           cd += CalcMul;
+          Console.WriteLine(cd(5.1f, 2.0f ,0.1f));
+           cd -= CalcSum;
+          Console.WriteLine(cd(5.1f, 2.0f ,0.1f));
+           }    
+      }
+ }
+
+（二）
+using System.Linq;
+namespace ConsoleApp2
+{
+     delegate void CalcE(decimal[] a);
+     class Program
+     {
+       static void CalcSum(decimal[] a)
+       {
+        System.Console.WriteLine($"总和:{a.Sum()}"); 
+        }
+       static void CalcAvg(decimal[] a)
+       {
+        System.Console.WriteLine($"平均值:{a.Average()}"); 
+        }
+     static void Main(string[] args)
+        {
+          CalcE ce = CalcSum;
+          ce += CalcAvg;
+          ce(new [] { 1.2M, 8.9M, 2.1M, 9.9M });
+        }    
+      }
+ }
+
+（三）
+using System.Linq;
+namespace ConsoleApp3
+{
+   class Program
+     {
+       static void CalcJoin(string[] x)
+       {
+          System.Console.WriteLine(string.Join(",",x));
+        }
+       static void CalcConcat(string[] x)
+       {
+          System.Console.WriteLine(string.Concat(x));
+        }
+     static void Main(string[] args)
+      {
+        System.Action<string[]> ac = CalcJoin;
+        ac += CalcConcat;
+        ac(new [] { "sql", "cs" });
+       }
+   } 
+}
+(四)
+using System.Linq;
+namespace ConsoleApp3
+{
+   class Program
+     {
+       static void CalcJoin(string[] x)
+       {
+          System.Console.WriteLine(string.Join(",",x));
+        }
+       static void CalcConcat(string[] x)
+       {
+          System.Console.WriteLine(string.Concat(x));
+        }
+     static void Main(string[] args)
+      {
+        System.Action<string[]> ac = CalcJoin;
+        ac += CalcConcat;
+        ac(new [] { "\"sql\"", "\"cs\"" });
+       }
+   } 
+}
